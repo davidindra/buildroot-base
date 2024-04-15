@@ -7,11 +7,14 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive\
     apt-get install -y build-essential libncurses5-dev rsync cpio python3 python-is-python3 unzip bc wget file htop nano && \
     rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
-# Install Buildroot.
+# Install Buildroot. NOTICE: update tag in .github/workflows/docker.yml when changing the version here!
+
 RUN wget -nv https://buildroot.org/downloads/buildroot-2024.02.1.tar.gz &&\
     tar xf buildroot-*.tar* &&\
     rm buildroot-*.tar* &&\
     ln -s buildroot-* buildroot
+
+LABEL org.buildroot.version="2024.02.1"
 
 #RUN mkdir -v buildroot/patches
 #RUN mkdir -vpm775 buildroot/rootfs_overlay/srv
