@@ -4,7 +4,7 @@ WORKDIR /
 
 # Install dependencies.
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive\
-    apt-get install -y build-essential libncurses5-dev rsync cpio python3 python-is-python3 unzip bc wget file \
+    apt-get install -y build-essential libncurses5-dev rsync cpio python3 python-is-python3 unzip bc wget file git \
                        htop nano mc && \
     rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 
@@ -16,10 +16,6 @@ RUN wget -nv https://buildroot.org/downloads/buildroot-2024.02.1.tar.gz &&\
     mv buildroot-* buildroot
 
 LABEL org.buildroot.version="2024.02.1"
-
-#RUN mkdir -v buildroot/patches
-#RUN mkdir -vpm775 buildroot/rootfs_overlay/srv
-#COPY    in/buildroot.conf       /root/buildroot/.config
 
 VOLUME [ "/buildroot/dl", "/buildroot/output" ]
 
